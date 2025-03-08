@@ -25,7 +25,10 @@ This repository demonstrates a **hybrid training** approach for **EEG (Electroen
 ---
 
 ## 2. Project Structure
-my-bci-research/ │ ├── README.md # This file ├── requirements.txt # Python dependencies ├── main.py # Main script: synthetic data gen, real data loading, training, evaluation ├── plot_results.py # Utility script for plotting confusion matrix & training curves └── LICENSE
+my-bci-research/ │
+ ├── README.md # This file
+  ├── requirements.txt # Python dependencies 
+  ├── main.py # Main script: synthetic data gen, real data loading, training, evaluation ├── plot_results.py # Utility script for plotting confusion matrix & training curves └── LICENSE
 
 ---
 
@@ -54,37 +57,66 @@ python plot_results.py
 
 Scripts
 main.py
+
 Purpose:
+
 Generate synthetic data: Models P300 peaks, Gaussian noise, random spikes.
+
 Load MNE dataset: Gains real EEG examples (MNE Sample Dataset).
+
 Define PyTorch model: (CELU, ReLU activations, Softmax output).
+
 Train model:
 Pre-train on synthetic data.
+
 Fine-tune on real data.
+
 Evaluate: Prints accuracy, confusion matrix, classification report.
+
 plot_results.py
+
 Purpose:
+
 Plots confusion matrix using matplotlib or seaborn.
+
 Draws training curves (loss vs. epochs, accuracy vs. epochs).
+
 Currently demonstrates placeholder arrays—modify to load actual training logs from main.py.
+
+
 6. Data
+
 Synthetic EEG Data
+
 Automatically generated in main.py.
+
 Simulates P300 waveforms around ~300 ms with configurable noise levels.
+
 MNE Sample Dataset
+
 Downloaded automatically by MNE-Python if not already present.
+
 Contains EEG (and MEG) from an adult participant in an auditory-visual experiment.
+
 Preprocessing includes band-pass filtering (1–40 Hz) and artifact rejection via EOG channels.
+
 If you prefer a different dataset, modify load_mne_data() in main.py accordingly.
+
 
 7. Results
 Accuracy: Typically ~75–76% on real MNE data (depending on subset used).
+
 Inference Time: ~3.97 ms per EEG sample (PyTorch CPU) for the final model.
+
 Confusion Matrix: Showcases how many positive vs. negative samples are correctly identified.
+
 E.g
 Confusion Matrix:
+
  [[47  9]
+
   [ 1 43]]
+
 Classification Report:
                precision    recall  f1-score   support
      ...
